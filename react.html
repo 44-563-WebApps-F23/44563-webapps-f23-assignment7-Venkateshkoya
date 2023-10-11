@@ -15,17 +15,33 @@
 
   <div id ="target">Your time</div>
   <div id="counter">Count</div>
-  <button id="start button" onclick="StartTime()">Start Timer</button>
-  <button id="react button"  onclick="recordTime()">React</button>
+  <button type="button" onclick="StartTime()">Start Timer</button>
+  <button type="button"  onclick="recordTime()">React</button>
   
   <script> 
     let reactTime = undefined;
 
     function recordTime(){
       reactTime = Date.now();
-      console.log("Reaction time record: "+ reactTime);
+      console.log(reactTime);
+    }
 
-      reactButton.addEventListener("click",recordTime);
+    function startTime(){
+      for(let i = 0; i<9; i++){
+        let time = setTimeout(()=>{document.getElementById("counter").innerHTML=i},(8-i)*(1000))
+        document.getElementById("target").innerHTML=time;
+      }
+      setTimeout(()=>{
+        if (reactTime == undefined){
+          document.getElementById("target").innerHTML="Too Slow"
+        }else{
+          let endTime=Date.now()
+          console.log(endTime)
+          let diff = endTime-reactTime
+          document.getElementById("target").innerHTML='Time is '+diff
+        }
+      },8000)
+      let endTime=Date.now()
     }
   </script>
 
