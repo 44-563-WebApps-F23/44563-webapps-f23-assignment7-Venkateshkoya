@@ -61,6 +61,7 @@
 		</p>
 		<input type ="text" id="newItemFront" placeholder="Enter item text">
 		<button onclick="addFront()">Add front</button>
+		<button onclick="swapElements()">swapElements</button>
 	
 </body>
 <script>
@@ -111,6 +112,21 @@
 			const container=document.getElementById('target');
 			container.insertBefore(newElement,container.firstChild);
 		}
+	}
+
+	function swapElements(){
+		const elements = document.querySelectorAll('.merger');
+		const index1 = Math.floor(Math.random()*elements.length);
+		let index2 =  Math.floor(Math.random()*elements.length);
+		while(index2 === index1){
+			index2 = Math.floor(Math.random()*elements.length);
+		}
+		const parent = elements[0].parentNode;
+		const tempNode = document.createElement('div');
+		parent.insertBefore(tempNode, elements[index1]);
+		parent.insertBefore(elements[index1],elements[index2+1]);
+		parent.insertBefore(elements[index2], tempNode);
+		parent.removeChild(tempNode);
 	}
 </script>
 </html>	

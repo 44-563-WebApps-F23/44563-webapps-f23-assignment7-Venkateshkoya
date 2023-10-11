@@ -17,6 +17,7 @@
   <div id="counter">Count</div>
   <button type="button" onclick="startTime()">Start Timer</button>
   <button type="button"  onclick="recordTime()">React</button>
+  <button type="button"  onclick="startNewGame()">Start New Game</button>
   
   <script> 
     let reactTime = undefined;
@@ -43,6 +44,34 @@
         }
       },8000);
 
+    }
+
+    function startNewGame(){
+      reactTime = undefined;
+      document.getElementById('target').innerText='Yourtime:';
+      document.getElementById('counter').innerText='Count:';
+
+      let countdownTime = Math.floor(Math.random()* (10-2+1))+2;
+      let tooSlowTimeout = setTimeout(()=>{
+        document.getElementById('target').innerText='Too slow';
+      },countdownTime*1000);
+      for(let i =0; i<9; i++){
+        setTimeout(()=>{
+          document.getElementById('counter').innerText= Count;
+        },(countdownTime-i)*1000);
+      }
+
+      setTimeout(()=>{
+        clearTimeout(tooSlowTimeout);
+        if(reactTime===undefined){
+          document.getElementById('target').innerText='Too Slow';
+
+        }else{
+          let endTime=Date.now();
+          let elapsedTime= endTime-reactTime;
+          document.getElementById('target').innerText= Yourtime;
+        }
+      },countdownTime*1000);
     }
   </script>
 
